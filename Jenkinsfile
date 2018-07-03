@@ -2,7 +2,6 @@ node {
     try {
         stage('Build') {
             checkout scm
-            sh 'cd ./project'
             sh 'npm install'
             sh 'grunt build'
         }
