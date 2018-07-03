@@ -13,5 +13,6 @@ node {
         if (currentResult == 'SUCCESS') {
             echo 'Build successful'
         }
+        archiveArtifacts 'dist/*'
     }
 }
