@@ -1,8 +1,6 @@
 node {
     stage('Build') {
-        dir('project') {
-            checkout scm
-        }
+        checkout scm
         sh 'cd ./project'
         sh 'npm install'
         sh 'grunt build'
