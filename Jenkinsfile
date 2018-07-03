@@ -1,16 +1,17 @@
 node {
-    stage('Build') {
-        checkout scm
-        sh 'cd ./project'
-        sh 'npm install'
-        sh 'grunt build'
-    }
-    post {
-        success {
-            echo 'Build successful'
+    try {
+        stage('Build') {
+            checkout scm
+            sh 'cd ./project'
+            sh 'npm install'
+            sh 'grunt build'
         }
-        failure {
-            echo 'Build failed failed'
+    } catch (e) {
+        echo 'Build failed failed'
+    } finally {
+        def currentResult = currentBuild.result ?: 'SUCCESS'
+        if (currentResult == 'SUCCESS') {
+            echo 'Build successful'
         }
     }
 }
